@@ -2,11 +2,11 @@
 
 <footer>
   <div class="footer-social">
-    <a href="https://youtube.com/YETI" target="_blank"><i class="fa-brands fa-youtube"></i></a>
-    <a href="https://facebook.com/YETI" target="_blank"><i class="fa-brands fa-facebook"></i></a>
-    <a href="https://instagram.com/YETI" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-    <a href="https://linkedin.com/YETI" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
-    <a href="https://twitter.com/YETI" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+    <a href="https://youtube.com/Khyung" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+    <a href="https://facebook.com/khyung" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+    <a href="https://instagram.com/khyung" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+    <a href="https://linkedin.com/khyung" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+    <a href="https://twitter.com/khyung" target="_blank"><i class="fa-brands fa-twitter"></i></a>
   </div>
   <div class="container footer-container">
     <article>

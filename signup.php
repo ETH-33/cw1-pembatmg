@@ -40,12 +40,11 @@ unset($_SESSION['signup-data']);
 <section class="form-section">
   <div class="container form-container">
     <h2>Sign Up</h2>
-    <?php
-    if(isset($_SESSION['signup'])): ?>
+    <?php if(isset($_SESSION['signup'])): ?> 
        <div class="alert-message error">
-      <p><?= $_SESSION['signup'];
+      <p>
+        <?= $_SESSION['signup'];
        unset($_SESSION['signup']);?> </p>
-     
     </div>
 
     <?php endif ?>

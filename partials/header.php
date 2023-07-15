@@ -1,7 +1,13 @@
 <?php
 
 require 'config/database.php';
-
+// fetch current user from database
+if(isset($_SESSION['user-id'])) {
+  $id = filter_var($_SESSION['user-id'], FILTER_SANITIZE_NUMBER_INT);
+  $query = "SELECT avatar FROM users WHERE id=$id";
+  $result = mysqli_query($connection, $query);
+  $avatar = mysqli_fetch_assoc($result);
+}
 ?>
 
 <!DOCTYPE html>
@@ -35,22 +41,25 @@ require 'config/database.php';
 
   <nav>
     <div class="container nav-container ">
-       <a href="<?php echo ROOT_URL ?>" class="nav-logo">YETI</a>
+       <a href="<?php echo ROOT_URL ?>" class="nav-logo">KHYUNG</a>
        <ul class="nav-items">
         <li><a href="<?php echo ROOT_URL ?>blog.php">Blog</a></li>
         <li><a href="<?php echo ROOT_URL ?>about.php">About</a></li>
         <li><a href="<?php echo ROOT_URL ?>services.php">Services</a></li>
         <li><a href="<?php echo ROOT_URL ?>contact.php">Contact</a></li>
-        <li><a href="<?php echo ROOT_URL ?>signin.php">Signin</a></li> -/->
-        <!-- <li class="nav-profile">
-          <div class="avatar"><img src="/images/avatar.jpg"></div>
+        <?php if(isset($_SESSION['user-id'])) : ?>
+        <li class="nav-profile">
+          <div class="avatar">
+            <img src="<?= ROOT_URL . 'images/' . $avatar['avatar'] ?>">
+          </div>
           <ul>
-            <li><a href="<?php echo ROOT_URL ?>admin/dashboard.php">Dashboard</a></li>
+            <li><a href="<?php echo ROOT_URL ?>admin/index.php">Dashboard</a></li>
             <li><a href="<?php echo ROOT_URL ?>logout.php">Logout</a></li>
           </ul>
-
-          
-        </li> -->
+        </li>
+        <?php else : ?>
+        <li><a href="<?php echo ROOT_URL ?>signin.php">Signin</a></li>
+        <?php endif ?>
 
        </ul>
 

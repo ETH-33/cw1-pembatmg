@@ -1,10 +1,26 @@
 <?php
 include 'partials/header.php';
+
+// fetch users from database but not the current/loged in users
+$current_admin_id = $_SESSION['user-id'];
+
+$query = "SELECT * FROM users WHERE NOT id=$current_admin_id";
+$users = mysqli_query($connection, $query );
+
 ?>
 
 
 
 <section class="dashboard">
+<?php if(isset($_SESSION['add-user-success'])) : ?>
+    <div class="alert-message success container">
+       <p>
+         <?= $_SESSION['add-user-success'];
+          unset($_SESSION['add-user-success']); ?>
+       </p>
+    </div>
+    <?php endif ?>
+
   <div class="container dashboard-container">
     <button id="show-sidebar-btn" class="sidebar-toggle"><i class="gg-arrow-right"></i></button>
     <button id="hide-sidebar-btn" class="sidebar-toggle"><i class="gg-arrow-long-left"></i></button>
@@ -16,10 +32,12 @@ include 'partials/header.php';
           </a>
         </li>
         <li>
-          <a href="dashboard.php" ><i class="gg-push-chevron-down"></i>
+          <a href="index.php" ><i class="gg-push-chevron-down"></i>
             <h5>Manage Post</h5>
           </a>
         </li>
+        <?php if(isset($_SESSION['user_is_admin'])) : ?>
+
         <li>
           <a href="add-user.php" ><i class="gg-user-add"></i>
             <h5>Add User</h5>
@@ -40,6 +58,7 @@ include 'partials/header.php';
             <h5>Manage Categories</h5>
           </a>
         </li>
+        <?php endif ?>
       </ul>
     </aside>
     <main>
@@ -55,28 +74,15 @@ include 'partials/header.php';
         </tr>
       </thead>
           <tbody>
+            <?php while($user = mysqli_fetch_assoc($users)) : ?>
             <tr>
-              <td>Mero Nero</td>
-              <td>Nero</td>
-              <td><a href="edit-user.php" class="btn sm">Edit</a></td>
-              <td><a href="delete-category.php" class="btn sm danger">Delete</a></td>
-              <td>Yes</td>
+              <td><?= "{$user['firstname']} {$user['lastname']}" ?></td>
+              <td><?= $user['username'] ?></td>
+              <td><a href="<?= ROOT_URL ?>admin/edit-user.php?id=<?= $user['id']?>" class="btn sm">Edit</a></td>
+              <td><a href="<?= ROOT_URL ?>admin/delete-user.php?id=<?= $user['id']?>" class="btn sm danger">Delete</a></td>
+              <td><?= $user['is_admin'] ? 'yes' : 'No' ?> </td>
             </tr>
-            <tr>
-              <td>Mero Tero</td>
-              <td>Tero</td>
-              <td><a href="edit-user.php" class="btn sm">Edit</a></td>
-              <td><a href="delete-category.php" class="btn sm danger">Delete</a></td>
-              <td>No</td>
-            </tr>
-            <tr>
-              <td>Mero Yesko</td>
-              <td>Yesko</td>
-              <td><a href="edit-user.php" class="btn sm">Edit</a></td>
-              <td><a href="delete-category.php" class="btn sm danger">Delete</a></td>
-              <td>No</td>
-            </tr>
-           
+            <?php endwhile ?>
           </tbody>
       </table>
     </main>
