@@ -1,3 +1,8 @@
+<?php
+require 'config/constants.php';
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Home</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="./css/style.css">
 
   <!--Using cdnjs font awsome for social icons-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -29,7 +34,7 @@
     <input type="text" placeholder="Username or Email">
     <input type="password" placeholder="Password">
     <button type="submit" class="btn">Sign In</button>
-    <small>Don't have an account? <a href="signup.html">Sign up</a></small>
+    <small>Don't have an account? <a href="signup.php">Sign up</a></small>
   </form>
   </div>
 </section>
