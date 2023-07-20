@@ -12,11 +12,44 @@ $users = mysqli_query($connection, $query );
 
 
 <section class="dashboard">
-<?php if(isset($_SESSION['add-user-success'])) : ?>
+  <!--  shows if add user was successfull -->
+<?php if(isset($_SESSION['add-user-success'])) : ?>  
     <div class="alert-message success container">
        <p>
          <?= $_SESSION['add-user-success'];
           unset($_SESSION['add-user-success']); ?>
+       </p>
+    </div>
+    <!-- shows if edit user was successfull -->
+<?php elseif(isset($_SESSION['edit-user-success'])) : ?>   
+    <div class="alert-message success container">
+       <p>
+         <?= $_SESSION['edit-user-success'];
+          unset($_SESSION['edit-user-success']); ?>
+       </p>
+    </div>
+    <!-- shows if edit user was UNsuccessfull -->
+<?php elseif(isset($_SESSION['edit-user'])) : ?>   
+    <div class="alert-message error container">
+       <p>
+         <?= $_SESSION['edit-user'];
+          unset($_SESSION['edit-user']); ?>
+       </p>
+    </div>
+    <!-- shows if delete user was successfull -->
+<?php elseif(isset($_SESSION['delete-user-success'])) : ?>   
+    <div class="alert-message success container">
+       <p>
+         <?= $_SESSION['delete-user-success'];
+          unset($_SESSION['delete-user-success']); ?>
+       </p>
+    </div>
+    <!-- shows if delete user was UNsuccessfull -->
+<?php elseif(isset($_SESSION['delete-user'])) : ?>   
+    <div class="alert-message error container">
+       <p>
+         <?= $_SESSION['delete-user'];
+          unset($_SESSION['delete-user']); ?>
        </p>
     </div>
     <?php endif ?>
@@ -63,6 +96,7 @@ $users = mysqli_query($connection, $query );
     </aside>
     <main>
       <h2>Manage Users</h2>
+      <?php if(mysqli_num_rows($users) > 0): ?>
       <table>
         <thead>
         <tr>
@@ -85,6 +119,9 @@ $users = mysqli_query($connection, $query );
             <?php endwhile ?>
           </tbody>
       </table>
+      <?php else : ?>
+        <div class="alert__message error"><?= "No users found" ?></div>
+        <?php endif ?>
     </main>
   </div>
 </section>
