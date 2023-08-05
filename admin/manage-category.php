@@ -8,6 +8,24 @@ $categories = mysqli_query($connection,$query);
 
 
 <section class="dashboard">
+<!-- <-- shows if add category was successfull --> 
+  <?php if(isset($_SESSION['add-category-success'])) : ?>  
+     <div class="alert-message success container">
+        <p>
+          <?= $_SESSION['add-category-success'];
+           unset($_SESSION['add-category-success']); ?>
+        </p>
+     </div>
+     <!-- <-- shows if add category was not successfull --> 
+  <?php elseif(isset($_SESSION['add-category'])) : ?>  
+     <div class="alert-message error container">
+        <p>
+          <?= $_SESSION['add-category'];
+           unset($_SESSION['add-category']); ?>
+        </p>
+     </div>
+  <?php endif ?>
+
   <div class="container dashboard-container">
     <button id="show-sidebar-btn" class="sidebar-toggle"><i class="gg-arrow-right"></i></button>
     <button id="hide-sidebar-btn" class="sidebar-toggle"><i class="gg-arrow-long-left"></i></button>
